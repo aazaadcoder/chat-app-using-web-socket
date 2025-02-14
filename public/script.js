@@ -9,6 +9,13 @@ const nickNameContainer =
   document.getElementsByClassName("nickNameContainer")[0];
 const nickNameDisplay = document.getElementById("nickName");
 
+function addMessageBox(message, messageType) {
+  const messageBox = document.createElement("li");
+  messageBox.classList.add(messageType);
+  messageBox.textContent = message;
+  allMessages.appendChild(messageBox);
+  window.scrollTo(0, document.body.scrollHeight);
+}
 nickNameButton.addEventListener("click", (e) => {
   e.preventDefault();
   if (nickNameInput.value) {
@@ -27,10 +34,11 @@ form.addEventListener("submit", (e) => {
 
   if (nickName) {
     if (input.value) {
+    addMessageBox(input.value, "self-text");
       const messageData = {
         message: input.value,
         authorId: socket.id,
-        nickName : nickName
+        nickName: nickName,
       };
       socket.emit("user-message-data", messageData);
       input.value = "";
@@ -42,38 +50,22 @@ form.addEventListener("submit", (e) => {
 
 socket.on("message-data", (messageData) => {
   if (nickName) {
-    const messageBox = document.createElement("li");
-    if(messageData.authorId == socket.id){
-        messageBox.textContent = messageData.message;
-
-        messageBox.classList.add("self-text");
+      addMessageBox(
+        `${messageData.nickName}: ${messageData.message}`,
+        "normal-text"
+      );
     }
-    else{
-        messageBox.textContent = `${messageData.nickName}: ${messageData.message}`;
-
-        messageBox.classList.add("normal-text");
-    }
-    allMessages.appendChild(messageBox);
-    window.scrollTo(0, document.body.scrollHeight);
-  }
+  
 });
 
 socket.on("connected-user-nick-name", (connectedUserNickName) => {
   if (nickName) {
-    const messageBox = document.createElement("li");
-    messageBox.classList.add("joined");
-    messageBox.textContent = `${connectedUserNickName} has joined the Chat`;
-    allMessages.appendChild(messageBox);
-    window.scrollTo(0, document.body.scrollHeight);
+    addMessageBox(`${connectedUserNickName} has joined the Chat`, "joined");
   }
 });
 
 socket.on("disconnected-user-nick-name", (disConnectedUserNickName) => {
   if (nickName) {
-    const messageBox = document.createElement("li");
-    messageBox.classList.add("left");
-    messageBox.textContent = `${disConnectedUserNickName} has left the Chat`;
-    allMessages.appendChild(messageBox);
-    window.scrollTo(0, document.body.scrollHeight);
+    addMessageBox(`${disConnectedUserNickName} has left the Chat`, "left");
   }
 });

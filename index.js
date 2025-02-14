@@ -18,7 +18,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("user-message-data", (messageData) => {
-    io.emit("message-data", messageData);
+    socket.broadcast.emit("message-data", messageData);
   });
 
   socket.on("connected-user-nick-name", (nickName) => {
