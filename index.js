@@ -1,34 +1,37 @@
-const express = require('express');
-const http = require('http');
-const { disconnect } = require('process');
-const {Server} = require("socket.io")
+const express = require("express");
+const http = require("http");
+const { disconnect } = require("process");
+const { Server } = require("socket.io");
 const app = express();
 
 const server = http.createServer(app);
 const io = new Server(server);
 
-app.use(express.static("public"))
+app.use(express.static("public"));
 
+io.on("connection", (socket) => {
 
-io.on("connection", (socket)=>{
-    io.emit("connected-user-id",  socket.id)
-    console.log("user loggedin.");
-    socket.on("disconnect", ()=>{
-        io.emit("disconnected-user-id",  socket.id);
-        console.log("user logged out");
-    })
+   let nickNameSaved = "";
 
-    socket.on("user-message", (message)=>{
-        io.emit("message", message)
-    })
-})
+  socket.on("disconnect", () => {
+    io.emit("disconnected-user-nick-name", nickNameSaved);
 
-app.get("/", (req, res)=>{
-    return res.sendFile("./public/index.html")
-})
+  });
 
+  socket.on("user-message", (message) => {
+    io.emit("message", message);
+  });
 
-server.listen(8000, ()=>{
-    console.log("server started on port: 8000")
-})
+  socket.on("connected-user-nick-name", (nickName) => {
+    nickNameSaved = nickName;
+    io.emit("connected-user-nick-name", nickName);
+  });
+});
 
+app.get("/", (req, res) => {
+  return res.sendFile("./public/index.html");
+});
+
+server.listen(8000, () => {
+  console.log("server started on port: 8000");
+});

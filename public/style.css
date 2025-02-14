@@ -7,6 +7,10 @@ body {
     background: #333;
 }
 
+button{
+    cursor: pointer;
+}
+
 #form {
   background: rgba(0, 0, 0, 0.15);
   padding: 0.25rem;
@@ -15,6 +19,7 @@ body {
   left: 0;
   right: 0;
   display: flex;
+  /* align-items: center; */
   height: 3rem;
   box-sizing: border-box;
   backdrop-filter: blur(10px);
@@ -63,3 +68,55 @@ body {
 .left {
   color: lightcoral;
 }
+
+.normal-text{
+    color: aliceblue;
+}
+
+
+.nickNamePopUp{
+    position: relative;
+    /* height: 100vh; */
+    top : 200px;
+    width: 100wh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nickNameContainer{
+    height: 200px;
+    width: 500px;
+    background-color: lightgreen;
+    color: aliceblue;
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    position: sticky;
+
+}
+
+/* .nickNameContainer input{
+    min-length: 250px;
+    size: 5;
+} */
+
+
+.nickNameContainer button{
+    background-color: lightskyblue;
+    color: aliceblue;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+}
+
+#nickName {
+    justify-self: center; 
+    align-self: center;
+    transform: translateY(-3px);
+    color: #fff;
+}
+

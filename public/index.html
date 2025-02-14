@@ -9,9 +9,18 @@
 <body>
   <ul id="messages"></ul>
   <form id="form" action="">
+      <div id="nickName">user-name: </div>
+    
     <input id="input" autocomplete="off" /><button type="submit">Send</button>
   </form>
 
+  <div class="nickNamePopUp">
+    <div class="nickNameContainer">
+    
+      <input type="text" placeholder="Enter a Nikcname to Enter the Chat" size="50" id="nickNameInput">
+      <button id="nickNameButton">Enter Chat</button>
+  </div>
+  </div>
 
 
   <script src="/socket.io/socket.io.js"></script>
