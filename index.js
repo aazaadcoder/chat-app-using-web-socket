@@ -25,6 +25,10 @@ io.on("connection", (socket) => {
     nickNameSaved = nickName;
     io.emit("connected-user-nick-name", nickName);
   });
+
+  socket.on("typing-user-nick-name", (nickName)=>{
+    socket.broadcast.emit("typing-user-nick-name", nickName);
+  })
 });
 
 app.get("/", (req, res) => {

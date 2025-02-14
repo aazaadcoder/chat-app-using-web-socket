@@ -8,6 +8,9 @@ const nickNameInput = document.getElementById("nickNameInput");
 const nickNameContainer =
   document.getElementsByClassName("nickNameContainer")[0];
 const nickNameDisplay = document.getElementById("nickName");
+const typingAlertBox = document.getElementById("typingAlertBox");
+
+
 
 function addMessageBox(message, messageType) {
   const messageBox = document.createElement("li");
@@ -34,7 +37,7 @@ form.addEventListener("submit", (e) => {
 
   if (nickName) {
     if (input.value) {
-    addMessageBox(input.value, "self-text");
+      addMessageBox(input.value, "self-text");
       const messageData = {
         message: input.value,
         authorId: socket.id,
@@ -48,14 +51,21 @@ form.addEventListener("submit", (e) => {
   }
 });
 
+input.addEventListener("input", (e) => {
+  if (nickName) {
+    socket.emit("typing-user-nick-name", nickName);
+  } else {
+    alert("Nickname Required to Enter the Chat.");
+  }
+});
+
 socket.on("message-data", (messageData) => {
   if (nickName) {
-      addMessageBox(
-        `${messageData.nickName}: ${messageData.message}`,
-        "normal-text"
-      );
-    }
-  
+    addMessageBox(
+      `${messageData.nickName}: ${messageData.message}`,
+      "normal-text"
+    );
+  }
 });
 
 socket.on("connected-user-nick-name", (connectedUserNickName) => {
@@ -68,4 +78,12 @@ socket.on("disconnected-user-nick-name", (disConnectedUserNickName) => {
   if (nickName) {
     addMessageBox(`${disConnectedUserNickName} has left the Chat`, "left");
   }
+});
+
+socket.on("typing-user-nick-name", (nickName) => {
+  typingAlertBox.innerText = `${nickName} is typing...`;
+
+  setInterval(()=>{
+    typingAlertBox.innerHTML = ""
+  }, 3000)
 });

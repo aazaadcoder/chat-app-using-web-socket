@@ -1,62 +1,63 @@
 body {
-  margin: 0;
-  padding-bottom: 3rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
+    margin: 0;
+    padding-bottom: 3rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+        Arial, sans-serif;
 
     background: #333;
+    
 }
 
-button{
+button {
     cursor: pointer;
 }
 
 #form {
-  background: rgba(0, 0, 0, 0.15);
-  padding: 0.25rem;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  /* align-items: center; */
-  height: 3rem;
-  box-sizing: border-box;
-  backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.15);
+    padding: 0.25rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    /* align-items: center; */
+    height: 3rem;
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
 }
 
 #input {
-  border: none;
-  padding: 0 1rem;
-  flex-grow: 1;
-  border-radius: 2rem;
-  margin: 0.25rem;
+    border: none;
+    padding: 0 1rem;
+    flex-grow: 1;
+    border-radius: 2rem;
+    margin: 0.25rem;
 }
 
 #input:focus {
-  outline: none;
+    outline: none;
 }
 
-#form > button {
-  background: lightskyblue;
-  border: none;
-  padding: 0 1rem;
-  margin: 0.25rem;
-  border-radius: 3px;
-  outline: none;
-  color: #fff;
+#form>button {
+    background: lightskyblue;
+    border: none;
+    padding: 0 1rem;
+    margin: 0.25rem;
+    border-radius: 3px;
+    outline: none;
+    color: #fff;
 }
 
 #messages {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-#messages > li {
-  padding: 0.5rem 1rem;
+#messages>li {
+    padding: 0.5rem 1rem;
 }
 
 /* #messages>li:nth-child(odd) {
@@ -64,33 +65,46 @@ button{
     } */
 
 .joined {
-  color: lightgreen;
+    color: lightgreen;
 }
 
 .left {
-  color: lightcoral;
+    color: lightcoral;
+
 }
 
-.normal-text{
+.joined , .left,  .typing , #typingAlertBox{
+    font-style: italic;
+    align-self: center;
+    font-size: small;
+}
+
+.normal-text {
     color: aliceblue;
 }
 
-.self-text{
+.self-text {
     color: lightseagreen;
     align-self: flex-end;
 }
 
+#typingAlertBox{
+    color: lightyellow;
+    width: 100vw;
+    text-align: center;
+}
 
-.nickNamePopUp{
+.nickNamePopUp {
     position: relative;
     /* height: 100vh; */
-    top : 200px;
+    top: 200px;
     width: 100wh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.nickNameContainer{
+
+.nickNameContainer {
     height: 200px;
     width: 500px;
     background-color: lightgreen;
@@ -112,7 +126,7 @@ button{
 } */
 
 
-.nickNameContainer button{
+.nickNameContainer button {
     background-color: lightskyblue;
     color: aliceblue;
     border-radius: 5px;
@@ -121,9 +135,8 @@ button{
 }
 
 #nickName {
-    justify-self: center; 
+    justify-self: center;
     align-self: center;
     transform: translateY(-3px);
     color: #fff;
 }
-
