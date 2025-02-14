@@ -51,6 +51,8 @@ button{
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 #messages > li {
@@ -71,6 +73,11 @@ button{
 
 .normal-text{
     color: aliceblue;
+}
+
+.self-text{
+    color: lightseagreen;
+    align-self: flex-end;
 }
 
 

@@ -1,6 +1,5 @@
 const express = require("express");
 const http = require("http");
-const { disconnect } = require("process");
 const { Server } = require("socket.io");
 const app = express();
 
@@ -18,8 +17,8 @@ io.on("connection", (socket) => {
 
   });
 
-  socket.on("user-message", (message) => {
-    io.emit("message", message);
+  socket.on("user-message-data", (messageData) => {
+    io.emit("message-data", messageData);
   });
 
   socket.on("connected-user-nick-name", (nickName) => {
